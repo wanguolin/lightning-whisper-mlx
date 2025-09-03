@@ -87,6 +87,12 @@ class LightningWhisperMLX():
         hf_hub_download(repo_id=repo_id, filename=filename1, local_dir=local_dir)
         hf_hub_download(repo_id=repo_id, filename=filename2, local_dir=local_dir)
     
-    def transcribe(self, audio_path, language=None):
-        result = transcribe_audio(audio_path, path_or_hf_repo=f'./mlx_models/{self.name}', language=language, batch_size=self.batch_size)
+    def transcribe(self, audio_path, language=None, initial_prompt=None):
+        result = transcribe_audio(
+            audio_path, 
+            path_or_hf_repo=f'./mlx_models/{self.name}', 
+            language=language, 
+            batch_size=self.batch_size,
+            initial_prompt=initial_prompt
+        )
         return result
